@@ -1,0 +1,33 @@
+meta {
+  name: Analyze Risks
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}{{apiPath}}/analyze-risks
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "featuresJson": "[\n  {\n    \"id\": \"auth-001\",\n    \"title\": \"User Authentication System\",\n    \"description\": \"Allow users to create accounts and log in securely\",\n    \"complexity\": \"medium\"\n  },\n  {\n    \"id\": \"posts-001\",\n    \"title\": \"Post Creation and Timeline\",\n    \"description\": \"Users can create posts and view timeline of followed users\",\n    \"complexity\": \"high\"\n  }\n]",
+    "prioritiesJson": "[\n  {\n    \"id\": \"auth-001\",\n    \"feature\": \"User Authentication System\",\n    \"priority\": \"high\",\n    \"reasoning\": \"Foundation for all other features\"\n  },\n  {\n    \"id\": \"posts-001\",\n    \"feature\": \"Post Creation and Timeline\",\n    \"priority\": \"medium\",\n    \"reasoning\": \"Core functionality but depends on auth\"\n  }\n]",
+    "transcript": "I need to build a web application that allows users to create accounts, log in, post messages, and view a timeline of posts from users they follow."
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Response should contain risks", function() {
+    const data = JSON.parse(res.getBody().data);
+    expect(data).to.have.property('risks');
+    expect(data.risks).to.be.an('array');
+  });
+}

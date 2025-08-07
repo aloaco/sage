@@ -1,0 +1,32 @@
+meta {
+  name: Analyze Priorities
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}{{apiPath}}/analyze-priorities
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "featuresJson": "[\n  {\n    \"id\": \"auth-001\",\n    \"title\": \"User Authentication System\",\n    \"description\": \"Allow users to create accounts and log in securely\",\n    \"complexity\": \"medium\"\n  },\n  {\n    \"id\": \"posts-001\",\n    \"title\": \"Post Creation and Timeline\",\n    \"description\": \"Users can create posts and view timeline of followed users\",\n    \"complexity\": \"high\"\n  },\n  {\n    \"id\": \"social-001\",\n    \"title\": \"Social Features (Like/Comment)\",\n    \"description\": \"Users can like and comment on posts\",\n    \"complexity\": \"medium\"\n  }\n]",
+    "transcript": "I need to build a web application that allows users to create accounts, log in, post messages, and view a timeline of posts from users they follow. It should have real-time notifications and the ability to like and comment on posts."
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Response should contain priorities", function() {
+    const data = JSON.parse(res.getBody().data);
+    expect(data).to.have.property('priorities');
+    expect(data.priorities).to.be.an('array');
+  });
+}

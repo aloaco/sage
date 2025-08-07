@@ -1,0 +1,36 @@
+meta {
+  name: Extract Features
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}{{apiPath}}/extract-features
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "transcript": "I need to build a web application that allows users to create accounts, log in, post messages, and view a timeline of posts from users they follow. It should have real-time notifications and the ability to like and comment on posts. I also want users to be able to upload profile pictures and customize their profiles.",
+    "pdfFiles": []
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Response should contain data", function() {
+    expect(res.getBody()).to.have.property('data');
+  });
+  
+  test("Should parse features from response", function() {
+    const data = JSON.parse(res.getBody().data);
+    expect(data).to.have.property('features');
+    expect(data.features).to.be.an('array');
+  });
+}

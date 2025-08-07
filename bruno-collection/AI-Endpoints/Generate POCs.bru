@@ -1,0 +1,43 @@
+meta {
+  name: Generate POCs
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}{{apiPath}}/generate-pocs
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "featuresJson": "[\n  {\n    \"id\": \"auth-001\",\n    \"title\": \"User Authentication System\",\n    \"description\": \"Allow users to create accounts and log in securely\",\n    \"complexity\": \"medium\"\n  },\n  {\n    \"id\": \"posts-001\",\n    \"title\": \"Post Creation and Timeline\",\n    \"description\": \"Users can create posts and view timeline of followed users\",\n    \"complexity\": \"high\"\n  }\n]",
+    "prioritiesJson": "[\n  {\n    \"id\": \"auth-001\",\n    \"feature\": \"User Authentication System\",\n    \"priority\": \"high\",\n    \"reasoning\": \"Foundation for all other features\"\n  }\n]",
+    "risksJson": "[\n  {\n    \"id\": \"risk-001\",\n    \"title\": \"Scalability Concerns\",\n    \"description\": \"Timeline feature may not scale with large user base\",\n    \"severity\": \"medium\",\n    \"category\": \"technical\",\n    \"impact\": \"Performance degradation\",\n    \"mitigation\": \"Implement pagination and caching\"\n  }\n]",
+    "hourlyRate": 150
+  }
+}
+
+tests {
+  test("Status should be 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Response should contain POC versions", function() {
+    const data = JSON.parse(res.getBody().data);
+    expect(data).to.have.property('pocVersions');
+    expect(data.pocVersions).to.be.an('array');
+    expect(data.pocVersions).to.have.length(3);
+  });
+  
+  test("POCs should have different focuses", function() {
+    const data = JSON.parse(res.getBody().data);
+    const focuses = data.pocVersions.map(poc => poc.focus);
+    expect(focuses).to.include('revenue');
+    expect(focuses).to.include('fundraising');
+    expect(focuses).to.include('risk-mitigation');
+  });
+}
