@@ -58,7 +58,7 @@ class OpenRouterService {
     const systemMessage = {
       role: "system",
       content:
-        "You are a software project analyst. Extract all features to be built from the provided materials (transcript and PDF documents). Only extract features explicitly mentioned - do not hallucinate or infer features. Analyze the complexity based on typical development effort: low (simple CRUD, basic UI), medium (integrations, complex logic), high (AI/ML, real-time systems, complex architecture).",
+        "You are a software project analyst. Extract all features to be built from the provided materials (transcript and PDF documents). Only extract features explicitly mentioned - do not hallucinate or infer features. Focus on identifying distinct, buildable features with clear titles and detailed descriptions.",
     };
 
     const userContent = [
@@ -69,12 +69,12 @@ class OpenRouterService {
     ];
 
     if (pdfFiles && pdfFiles.length > 0) {
-      pdfFiles.forEach((base64Data) => {
+      pdfFiles.forEach((dataUrl, index) => {
         userContent.push({
           type: "file",
           file: {
-            data: base64Data,
-            type: "application/pdf",
+            file_name: `project-transcript-${index + 1}.pdf`,
+            file_data: dataUrl,
           },
         });
       });
@@ -101,7 +101,6 @@ class OpenRouterService {
       model,
       messages,
       temperature: 0.7,
-      max_tokens: 4000,
       plugins: [
         {
           id: "file-parser",
@@ -123,10 +122,6 @@ class OpenRouterService {
                 items: {
                   type: "object",
                   properties: {
-                    id: {
-                      type: "string",
-                      description: "Unique identifier for the feature",
-                    },
                     title: {
                       type: "string",
                       description: "Name of the feature",
@@ -135,14 +130,8 @@ class OpenRouterService {
                       type: "string",
                       description: "Detailed description of the feature",
                     },
-                    complexity: {
-                      type: "string",
-                      enum: ["low", "medium", "high"],
-                      description:
-                        "Complexity level of implementing this feature",
-                    },
                   },
-                  required: ["id", "title", "description", "complexity"],
+                  required: ["title", "description"],
                   additionalProperties: false,
                 },
               },
@@ -170,6 +159,7 @@ class OpenRouterService {
 
       return response.data.choices[0]?.message?.content || "";
     } catch (error) {
+      console.log("error", error);
       console.error(
         "OpenRouter PDF API call failed:",
         error.response?.data || error.message
@@ -203,7 +193,7 @@ Consider business impact, technical dependencies, and development sequence when 
     const messages = [systemMessage, userMessage];
 
     const request = {
-      model: "google/gemini-2.5-flash",
+      model: "openai/gpt-5-mini",
       messages,
       temperature: 0.7,
       max_tokens: 4000,

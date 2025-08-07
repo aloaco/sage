@@ -2,6 +2,10 @@ import { create } from 'zustand';
 import type { ProjectState, StepType, ProjectInputs, Feature, Priority, Risk, POCVersion, Deliverable } from '../types';
 
 interface ProjectStore extends ProjectState {
+  // Cache actions
+  isCacheEnabled: boolean;
+  setCacheEnabled: (enabled: boolean) => void;
+
   // Navigation actions
   nextStep: () => void;
   prevStep: () => void;
@@ -40,6 +44,7 @@ const stepOrder: StepType[] = [
 export const useProjectStore = create<ProjectStore>((set, get) => ({
   // Initial state
   currentStep: 'welcome',
+  isCacheEnabled: false,
   inputs: {
     hourlyRate: null,
     transcript: '',
@@ -55,6 +60,11 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   },
   isLoading: false,
   error: null,
+
+  // Cache actions
+  setCacheEnabled: (enabled: boolean) => {
+    set({ isCacheEnabled: enabled });
+  },
 
   // Navigation actions
   nextStep: () => {
@@ -95,7 +105,21 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
 
   // AI Processing actions
   processFeatureExtraction: async () => {
-    const { inputs, setLoading, setError, nextStep } = get();
+    const { inputs, setLoading, setError, nextStep, isCacheEnabled } = get();
+    const cacheKey = 'cache-features';
+
+    if (isCacheEnabled) {
+      const cachedData = localStorage.getItem(cacheKey);
+      if (cachedData) {
+        console.log(`[Cache] HIT for ${cacheKey}. Using cached data.`);
+        set((state) => ({
+          results: { ...state.results, features: JSON.parse(cachedData) },
+        }));
+        nextStep();
+        return;
+      }
+      console.log(`[Cache] MISS for ${cacheKey}. Fetching from backend.`);
+    }
     
     try {
       setLoading(true);
@@ -124,6 +148,11 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
       } catch (parseError) {
         const { mockFeatures } = await import('../mockData');
         features = mockFeatures;
+      }
+
+      if (isCacheEnabled) {
+        console.log(`[Cache] SAVING data to ${cacheKey}.`);
+        localStorage.setItem(cacheKey, JSON.stringify(features));
       }
 
       set((state) => ({
@@ -156,7 +185,21 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   },
 
   processPriorityAnalysis: async () => {
-    const { inputs, results, setLoading, setError, nextStep } = get();
+    const { inputs, results, setLoading, setError, nextStep, isCacheEnabled } = get();
+    const cacheKey = 'cache-priorities';
+
+    if (isCacheEnabled) {
+      const cachedData = localStorage.getItem(cacheKey);
+      if (cachedData) {
+        console.log(`[Cache] HIT for ${cacheKey}. Using cached data.`);
+        set((state) => ({
+          results: { ...state.results, priorities: JSON.parse(cachedData) },
+        }));
+        nextStep();
+        return;
+      }
+      console.log(`[Cache] MISS for ${cacheKey}. Fetching from backend.`);
+    }
     
     try {
       setLoading(true);
@@ -180,6 +223,11 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
       } catch (parseError) {
         const { mockPriorities } = await import('../mockData');
         priorities = mockPriorities;
+      }
+
+      if (isCacheEnabled) {
+        console.log(`[Cache] SAVING data to ${cacheKey}.`);
+        localStorage.setItem(cacheKey, JSON.stringify(priorities));
       }
 
       set((state) => ({
@@ -212,7 +260,21 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   },
 
   processRiskAnalysis: async () => {
-    const { inputs, results, setLoading, setError, nextStep } = get();
+    const { inputs, results, setLoading, setError, nextStep, isCacheEnabled } = get();
+    const cacheKey = 'cache-risks';
+
+    if (isCacheEnabled) {
+      const cachedData = localStorage.getItem(cacheKey);
+      if (cachedData) {
+        console.log(`[Cache] HIT for ${cacheKey}. Using cached data.`);
+        set((state) => ({
+          results: { ...state.results, risks: JSON.parse(cachedData) },
+        }));
+        nextStep();
+        return;
+      }
+      console.log(`[Cache] MISS for ${cacheKey}. Fetching from backend.`);
+    }
     
     try {
       setLoading(true);
@@ -237,6 +299,11 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
       } catch (parseError) {
         const { mockRisks } = await import('../mockData');
         risks = mockRisks;
+      }
+
+      if (isCacheEnabled) {
+        console.log(`[Cache] SAVING data to ${cacheKey}.`);
+        localStorage.setItem(cacheKey, JSON.stringify(risks));
       }
 
       set((state) => ({
@@ -269,7 +336,21 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   },
 
   processPOCGeneration: async () => {
-    const { inputs, results, setLoading, setError, nextStep } = get();
+    const { inputs, results, setLoading, setError, nextStep, isCacheEnabled } = get();
+    const cacheKey = 'cache-pocs';
+
+    if (isCacheEnabled) {
+      const cachedData = localStorage.getItem(cacheKey);
+      if (cachedData) {
+        console.log(`[Cache] HIT for ${cacheKey}. Using cached data.`);
+        set((state) => ({
+          results: { ...state.results, pocVersions: JSON.parse(cachedData) },
+        }));
+        nextStep();
+        return;
+      }
+      console.log(`[Cache] MISS for ${cacheKey}. Fetching from backend.`);
+    }
     
     try {
       setLoading(true);
@@ -299,6 +380,11 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
       } catch (parseError) {
         const { mockPOCVersions } = await import('../mockData');
         pocVersions = mockPOCVersions;
+      }
+
+      if (isCacheEnabled) {
+        console.log(`[Cache] SAVING data to ${cacheKey}.`);
+        localStorage.setItem(cacheKey, JSON.stringify(pocVersions));
       }
 
       set((state) => ({
@@ -331,7 +417,21 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   },
 
   processMVPGeneration: async (selectedPOCId: string) => {
-    const { inputs, results, setLoading, setError, nextStep } = get();
+    const { inputs, results, setLoading, setError, nextStep, isCacheEnabled } = get();
+    const cacheKey = `cache-mvp-${selectedPOCId}`;
+
+    if (isCacheEnabled) {
+      const cachedData = localStorage.getItem(cacheKey);
+      if (cachedData) {
+        console.log(`[Cache] HIT for ${cacheKey}. Using cached data.`);
+        set((state) => ({
+          results: { ...state.results, mvpDeliverables: JSON.parse(cachedData) },
+        }));
+        nextStep();
+        return;
+      }
+      console.log(`[Cache] MISS for ${cacheKey}. Fetching from backend.`);
+    }
     
     try {
       setLoading(true);
@@ -367,6 +467,11 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
       } catch (parseError) {
         const { mockMVPDeliverables } = await import('../mockData');
         mvpDeliverables = mockMVPDeliverables;
+      }
+
+      if (isCacheEnabled) {
+        console.log(`[Cache] SAVING data to ${cacheKey}.`);
+        localStorage.setItem(cacheKey, JSON.stringify(mvpDeliverables));
       }
 
       set((state) => ({

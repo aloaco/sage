@@ -8,7 +8,14 @@ export interface Feature {
   id: string;
   title: string;
   description: string;
-  complexity: 'low' | 'medium' | 'high';
+  complexity?: 'low' | 'medium' | 'high';
+  source?: FeatureSource;
+}
+
+export interface FeatureSource {
+  text: string;
+  startIndex: number;
+  endIndex: number;
 }
 
 export interface Priority {

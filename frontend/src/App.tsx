@@ -6,6 +6,7 @@ import { PriorityAnalysisStep } from "./components/steps/PriorityAnalysisStep";
 import { RiskAnalysisStep } from "./components/steps/RiskAnalysisStep";
 import { POCStep } from "./components/steps/POCStep";
 import { MVPStep } from "./components/steps/MVPStep";
+import CacheControls from "./components/shared/CacheControls";
 
 function App() {
   const { currentStep } = useProjectStore();
@@ -31,7 +32,12 @@ function App() {
     }
   };
 
-  return <div className="min-h-screen">{renderCurrentStep()}</div>;
+  return (
+    <div className="min-h-screen">
+      {renderCurrentStep()}
+      <CacheControls />
+    </div>
+  );
 }
 
 export default App;

@@ -2,34 +2,54 @@ import type { Feature, Priority, Risk, POCVersion, Deliverable } from './types';
 
 export const mockFeatures: Feature[] = [
   {
-    id: '1',
+    id: 'feat-001',
     title: 'User Authentication',
-    description: 'Login, registration, and user management system',
-    complexity: 'medium'
+    description: 'Complete user authentication system with login, registration, password reset, and secure session management',
+    source: {
+      text: 'users need to create accounts and log in securely with proper authentication',
+      startIndex: 45,
+      endIndex: 112
+    }
   },
   {
-    id: '2', 
+    id: 'feat-002', 
     title: 'Dashboard Analytics',
-    description: 'Real-time analytics dashboard with charts and metrics',
-    complexity: 'high'
+    description: 'Interactive analytics dashboard displaying real-time metrics, charts, and key performance indicators',
+    source: {
+      text: 'we need analytics and reporting features to track user engagement',
+      startIndex: 203,
+      endIndex: 268
+    }
   },
   {
-    id: '3',
+    id: 'feat-003',
     title: 'Payment Processing',
-    description: 'Stripe integration for handling payments and subscriptions',
-    complexity: 'medium'
+    description: 'Integrated payment system with Stripe for handling transactions, subscriptions, and billing management',
+    source: {
+      text: 'payment integration for subscriptions and billing',
+      startIndex: 156,
+      endIndex: 202
+    }
   },
   {
-    id: '4',
+    id: 'feat-004',
     title: 'Mobile App',
-    description: 'Native iOS and Android mobile applications',
-    complexity: 'high'
+    description: 'Cross-platform mobile applications for iOS and Android with full feature parity',
+    source: {
+      text: 'mobile apps for both iOS and Android platforms',
+      startIndex: 301,
+      endIndex: 345
+    }
   },
   {
-    id: '5',
+    id: 'feat-005',
     title: 'API Integration',
-    description: 'Third-party API integrations for data synchronization',
-    complexity: 'medium'
+    description: 'RESTful API with third-party service integrations for data synchronization and external platform connectivity',
+    source: {
+      text: 'API connections to external services and data sync',
+      startIndex: 378,
+      endIndex: 425
+    }
   }
 ];
 
