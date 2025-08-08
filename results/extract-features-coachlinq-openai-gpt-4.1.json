@@ -1,0 +1,114 @@
+{
+  "timestamp": "2025-01-08T12:45:30Z",
+  "endpoint": "/api/ai/extract-features",
+  "model": "openai/gpt-4.1",
+  "input_files": {
+    "local_transcript": "CoachLinq Follow up Call Transcript.txt",
+    "local_files": [
+      "Coachlinq intro call.pdf",
+      "Example Conversations CoachLinq.pdf", 
+      "NIH_SBIR_FOA_Questionnaire_CoachLinq_V2.pdf"
+    ]
+  },
+  "response": {
+    "data": {
+      "features": [
+        {
+          "id": "feat-001",
+          "title": "Chatbot Proof-of-Concept Integrated with Practice Better EMR",
+          "description": "A chatbot MVP (minimum viable product) that integrates with the Practice Better EMR system, enabling conversational interactions with patients for health coaching. The chatbot will be capable of onboarding patients, engaging them, and managing coaching sessions."
+        },
+        {
+          "id": "feat-002",
+          "title": "Patient Onboarding via Chatbot",
+          "description": "A feature enabling new patients to be onboarded through the chatbot, collecting necessary information and initiating engagement workflows."
+        },
+        {
+          "id": "feat-003",
+          "title": "Patient Engagement and Session Management",
+          "description": "The chatbot will engage patients in ongoing conversations for tracking behaviors, providing education, and managing the flow of coaching sessions."
+        },
+        {
+          "id": "feat-004",
+          "title": "Robust Reporting Dashboard for KPI Tracking",
+          "description": "A dashboard for coaches and administrators to track key performance indicators such as patient engagement rates, check-in frequency, goal adherence, and session outcomes."
+        },
+        {
+          "id": "feat-005",
+          "title": "Escalation and De-escalation Workflow (Human-in-the-Loop)",
+          "description": "A workflow allowing the chatbot to escalate a patient case to a human health coach (or multidisciplinary team) when certain criteria are met, and to de-escalate back to the bot when appropriate. Includes generating a summary of the conversation for the coach and tracking the action taken, with feedback from the human routed back to the chatbot system."
+        },
+        {
+          "id": "feat-006",
+          "title": "Clinical Insight Generation Engine",
+          "description": "A backend engine that synthesizes patient biometrics (e.g., device data, CPAP usage), patient-reported outcomes, and behavioral data to generate context-aware coaching insights and recommendations."
+        },
+        {
+          "id": "feat-007",
+          "title": "Clinical Logic Layer with Escalation Protocols",
+          "description": "A rules-based and AI-enhanced logic layer that interprets data, flags risks, and triggers escalation to human coaches based on NBHWC-aligned decision rules."
+        },
+        {
+          "id": "feat-008",
+          "title": "Dual-Facing Interface (Patient and Coach Views)",
+          "description": "Separate user interfaces for patients (conversational chatbot, education, tracking) and for coaches (dashboard, alerts, behavioral trends, and intervention recommendations)."
+        },
+        {
+          "id": "feat-009",
+          "title": "Human-in-the-Loop QA System using inhealth Academy Feedback",
+          "description": "A quality assurance loop where board-certified health coaches review, validate, and improve clinical insights and chatbot behaviors, providing ongoing feedback to the system."
+        },
+        {
+          "id": "feat-010",
+          "title": "Wearables and Remote Patient Monitoring Integration",
+          "description": "Integration with wearable devices and remote patient monitoring tools (e.g., heart rate, weight, sleep trackers) to feed real-time biosignal data into the CoachLinq platform."
+        },
+        {
+          "id": "feat-011",
+          "title": "Patient-Reported Outcomes and Survey Data Ingestion",
+          "description": "Ability to collect and process patient-reported outcomes and survey responses as part of the behavioral data used for insight generation."
+        },
+        {
+          "id": "feat-012",
+          "title": "Conversation Log and Behavioral History Tracking",
+          "description": "Structured storage and retrieval of all chatbot-patient conversations and tracked behaviors, enabling longitudinal analysis and personalized recommendations."
+        },
+        {
+          "id": "feat-013",
+          "title": "Federated Learning Model for Privacy-Preserving Adaptation",
+          "description": "A federated learning architecture that enables the system to learn and adapt across different populations while maintaining strong privacy safeguards."
+        },
+        {
+          "id": "feat-014",
+          "title": "API-First Plug-In Architecture",
+          "description": "A modular, API-driven system design that allows CoachLinq to be integrated as a plug-in with various EMRs/EHRs and other digital health platforms."
+        },
+        {
+          "id": "feat-015",
+          "title": "Dummy/Sandbox EMR Interface for MVP Demo",
+          "description": "A simple, non-production EMR interface used in the MVP to demonstrate chatbot and escalation workflows without requiring HIPAA compliance or live EHR integration."
+        },
+        {
+          "id": "feat-016",
+          "title": "Nudges, Reminders, and Progress Tracking for Patients",
+          "description": "Features within the chatbot to set reminders, track patient goals and progress (e.g., CPAP usage, energy levels), and provide motivational nudges."
+        },
+        {
+          "id": "feat-017",
+          "title": "AI-Generated Intervention Recommendations for Coaches",
+          "description": "Automated, AI-derived suggestions for human coaches on interventions to consider, based on patient data, trends, and risk profiles."
+        },
+        {
+          "id": "feat-018",
+          "title": "Usability Testing and Feedback Module",
+          "description": "In-app or system-level features for capturing usability feedback from coaches and patients, supporting iterative product improvement."
+        },
+        {
+          "id": "feat-019",
+          "title": "Compliance-Ready Technical Framework (HIPAA Roadmap)",
+          "description": "A technical foundation designed to support eventual HIPAA compliance, including planning for features such as authentication, authorization, access trails, and audit logs."
+        }
+      ]
+    }
+  }
+}

@@ -7,15 +7,15 @@ router.post("/extract-features", async (req, res) => {
   console.log("🚀 [API] Starting feature extraction request");
 
   try {
-    const { transcript, pdfFiles } = req.body;
+    const { transcript, pdfFiles, model, local_files, local_transcript } = req.body;
 
-    if (!transcript) {
+    if (!transcript && !local_transcript) {
       console.log("❌ [API] Feature extraction failed: Missing transcript");
-      return res.status(400).json({ error: "Transcript is required" });
+      return res.status(400).json({ error: "Transcript or local_transcript is required" });
     }
 
     console.log(
-      `📄 [API] Processing transcript (${transcript.length} characters) with ${pdfFiles?.length || 0} PDF files`
+      `📄 [API] Processing transcript (${transcript?.length || 'local'} characters) with ${pdfFiles?.length || 0} PDF files and ${local_files?.length || 0} local files${local_transcript ? ` and local transcript: ${local_transcript}` : ''}`
     );
 
     if (pdfFiles && pdfFiles.length > 0) {
@@ -28,7 +28,10 @@ router.post("/extract-features", async (req, res) => {
 
     const result = await openRouterService.extractFeatures(
       transcript,
-      pdfFiles
+      pdfFiles,
+      model,
+      local_files,
+      local_transcript
     );
 
     // Parse the AI response and add auto-generated IDs
@@ -81,7 +84,7 @@ router.post("/analyze-priorities", async (req, res) => {
   console.log("🎯 [API] Starting priority analysis request");
 
   try {
-    const { featuresJson, transcript } = req.body;
+    const { featuresJson, transcript, model } = req.body;
 
     if (!featuresJson || !transcript) {
       console.log("❌ [API] Priority analysis failed: Missing required data");
@@ -96,7 +99,8 @@ router.post("/analyze-priorities", async (req, res) => {
 
     const result = await openRouterService.analyzePriorities(
       featuresJson,
-      transcript
+      transcript,
+      model
     );
 
     const duration = Date.now() - startTime;
@@ -120,7 +124,7 @@ router.post("/analyze-risks", async (req, res) => {
   console.log("🛡️ [API] Starting risk analysis request");
 
   try {
-    const { featuresJson, prioritiesJson, transcript } = req.body;
+    const { featuresJson, prioritiesJson, transcript, model } = req.body;
 
     if (!featuresJson || !prioritiesJson || !transcript) {
       console.log("❌ [API] Risk analysis failed: Missing required data");
@@ -136,7 +140,8 @@ router.post("/analyze-risks", async (req, res) => {
     const result = await openRouterService.analyzeRisks(
       featuresJson,
       prioritiesJson,
-      transcript
+      transcript,
+      model
     );
 
     const duration = Date.now() - startTime;
@@ -160,7 +165,7 @@ router.post("/generate-pocs", async (req, res) => {
   console.log("🚀 [API] Starting POC generation request");
 
   try {
-    const { featuresJson, prioritiesJson, risksJson, hourlyRate } = req.body;
+    const { featuresJson, prioritiesJson, risksJson, hourlyRate, model } = req.body;
 
     if (!featuresJson || !prioritiesJson || !risksJson || !hourlyRate) {
       console.log("❌ [API] POC generation failed: Missing required data");
@@ -177,7 +182,8 @@ router.post("/generate-pocs", async (req, res) => {
       featuresJson,
       prioritiesJson,
       risksJson,
-      hourlyRate
+      hourlyRate,
+      model
     );
 
     const duration = Date.now() - startTime;
@@ -207,6 +213,7 @@ router.post("/generate-mvp", async (req, res) => {
       prioritiesJson,
       risksJson,
       hourlyRate,
+      model,
     } = req.body;
 
     if (
@@ -233,7 +240,8 @@ router.post("/generate-mvp", async (req, res) => {
       featuresJson,
       prioritiesJson,
       risksJson,
-      hourlyRate
+      hourlyRate,
+      model
     );
 
     const duration = Date.now() - startTime;

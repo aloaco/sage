@@ -1,0 +1,74 @@
+{
+  "timestamp": "2025-01-08T12:55:00Z",
+  "endpoint": "/api/ai/extract-features",
+  "model": "google/gemini-2.5-pro",
+  "input_files": {
+    "local_transcript": "CoachLinq Follow up Call Transcript.txt",
+    "local_files": [
+      "Coachlinq intro call.pdf",
+      "Example Conversations CoachLinq.pdf", 
+      "NIH_SBIR_FOA_Questionnaire_CoachLinq_V2.pdf"
+    ]
+  },
+  "response": {
+    "data": {
+      "features": [
+        {
+          "id": "feat-001",
+          "description": "A conversational AI bot for patients that enhances user experience and acts as a credible health resource. The bot will handle patient onboarding, engagement through personalized interactions, and session management. It will be able to track user-reported data (e.g., energy levels), set reminders, provide educational content, deliver resources like meal plans, and offer motivation based on progress.",
+          "title": "AI Health Coaching Chatbot"
+        },
+        {
+          "id": "feat-002",
+          "description": "Implement a system for the AI chatbot to escalate a conversation to a human health coach and for the coach to de-escalate the conversation back to the bot. The escalation process must create a task for the human coach within the EMR, providing a summary of the preceding bot interaction.",
+          "title": "Escalation and De-escalation Workflow"
+        },
+        {
+          "id": "feat-003",
+          "description": "The bot must be able to access and process data from a patient's Electronic Medical Record (EMR) or Electronic Health Record (EHR) system. This includes understanding clinical insights from chart notes, patient-tracked food logs, interactions with educational materials, and medical device usage (e.g., CPAP data). The initial integration target is the 'Practice Better' EMR.",
+          "title": "EMR/EHR Integration for Clinical Insights"
+        },
+        {
+          "id": "feat-004",
+          "description": "Develop a system where the AI learns from patient-bot interactions and the actions taken by human coaches following an escalation. This 'human-in-the-loop' feedback mechanism will be used to continuously improve the bot's performance, accuracy, and the quality of its insights.",
+          "title": "Continuous Learning System"
+        },
+        {
+          "id": "feat-005",
+          "description": "A feature for health coaches to use the bot to gain clinical insights about their patients. This tool would help coaches prepare for sessions and drive more effective communication. This is identified as a second-step feature, to be shown in mockups for the initial phase.",
+          "title": "Health Coach Clinical Insight Tool"
+        },
+        {
+          "id": "feat-006",
+          "description": "The AI chatbot will have a specialized focus on providing clinical insights for sleep and obesity. For sleep, it will learn from CPAP usage and other medical device data to drive lifestyle-based prompts. For obesity, it will leverage nutrition data and provide relevant educational content and plans.",
+          "title": "Specialized Insights for Sleep and Obesity"
+        },
+        {
+          "id": "feat-007",
+          "description": "While the initial MVP will be non-HIPAA compliant, the application's framework must be designed to be extensible for future HIPAA compliance. This includes planning for capabilities such as user authorization, authentication, and audit logs.",
+          "title": "HIPAA-Ready Architecture"
+        },
+        {
+          "id": "feat-008",
+          "description": "Create a set of mockups to present to investors, illustrating the evolution of the product and the future roadmap. These designs will showcase features beyond the initial MVP, including the health coach interface.",
+          "title": "Investor-Focused Mockups"
+        },
+        {
+          "id": "feat-009",
+          "description": "The system should be designed with a plug-in architecture, allowing it to be integrated into various EMR/EHR systems and turned on or off as needed by a health system. The system will use an API-first approach.",
+          "title": "Plug-in Architecture"
+        },
+        {
+          "id": "feat-010",
+          "description": "A dashboard for health coaches and organizations to track Key Performance Indicators (KPIs). This dashboard will provide robust reporting capabilities to monitor patient engagement and other relevant metrics.",
+          "title": "Reporting Dashboard for KPI Tracking"
+        },
+        {
+          "id": "feat-011",
+          "description": "For demonstration and pitching purposes, create a 'sandbox' or 'dummy' EMR interface. This will be a simple, fake UI to showcase the bot's functionality, such as creating a task upon escalation, without needing to connect to a live, production EMR system.",
+          "title": "Sandbox EMR for Demo Purposes"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,442 @@
+﻿Meeting Title: Aloa <> CoachLinq Scope Overview
+Date: Jul 29
+Meeting participants: Dawei Li, Malencar
+
+
+Transcript:
+ 
+Them: Systems where if they have an EMR system or EHR system that they  
+Me: EHR system, the EHR system, everything could use. This part  
+Them: could use this bot to help enhance the user experience.  
+Me: help enhance the user experience and have it to be able  
+Them: And have it to be a very credible resource for their patients.  
+Me: credible resource for their patients. The other key piece that we wanna make sure it does is up as  
+Them: The other key piece that we want to make sure it does is up escalate to a human and deescalate from the bot  
+Me: to a human and deescalate from the bot or from the human  
+Them: or from the human down to the bot and then have the learnings being shared across  
+Me: down to the bot, and then kind of the learn. Being shared across that ecosystem.  
+Them: that ecosystem.  
+Me: Mhmm. So they're  
+Them: So there is a lot of information within the EMR  
+Me: lot of it within the EHR system, how  
+Them: system, how the patients track their food, what  
+Me: the patients track their food, what they interact with, the kinds of  
+Them: they interact with in terms of education,  
+Me: education,  
+Them: you know, what the conversation might have been with that  
+Me: you know, what the conversation might have been them. Person and the human health coach, what is that  
+Them: person and the human health coach. What does that AI bot need to  
+Me: thought I need to understand from those chart notes  
+Them: understand from those chart notes? What so  
+Me: So we wanted to be very smart on the clinical  
+Them: wanted to be very smart on the clinical insights that are being produced  
+Me: insights that are being produced within the EMR system.  
+Them: within the EMR system and essentially it doesn't need to be perfect but we want it  
+Me: And, essentially, it doesn't need to be perfect, but we wanna it to be just enough so that we could go  
+Them: to be just enough so that we could go and pitch it to get seed funding.  
+Me: pitch it to get seed funding and and for the  
+Them: And then from there obviously build out, you know, get all the sort  
+Me: obviously build out you know. Get all the certifications and all the  
+Them: and all the those kinds of pieces that need to be  
+Me: those kinds of pieces that could be. I think ready and  
+Them: I think, ready in a, you know, in a clinical medical space.  
+Me: you know, a clinical medical space.  
+Them: So anyways, that's high level  
+Me: Anyways, that's high level. So far.  
+Them: so far.  
+Me: Yeah. Okay. I I actually that's so interesting. The so I had a questions just based on that alone. You mentioned patients will use this directly. But then also I think you mentioned some providers will use it too, or no? Did I did I miss  
+Them: The health coach. So our health coaches would, or could potentially use it too. So, like,  
+Me: The health coach. So our health coaches would or could potentially use it too. So, like, they have a new patient, and they wanna get  
+Them: they have a new patient and they want to get maybe clinical insights from  
+Me: the clinical insights from from the that helps them to, like,  
+Them: the bot that helps them to like  
+Me: drive more.  
+Them: drive more of their  
+Me: Communication  
+Them: communication. But it doesn't need to start there if that's  
+Me: it doesn't need to start there. That's too for the scope. We'd like for it to start with just the patient  
+Them: too complex for the scope. We'd like for it to start with just the patient  
+Me: and the bot interaction and the escalations. Like, that would be our  
+Them: and the bot interaction and the escalations.  
+Me: first step. Second step could be the other  
+Them: Like that would be our first step. Second step could be the other  
+Me: the other ecosystem. And then we think there's, like, some  
+Them: the other ecosystem, and then maybe there's, like, some mock ups that  
+Me: lockups that can show that a little  
+Them: can show the evolution of what we wanna do.  
+Me: evolution of what we wanna do. And particularly, we wanted to have  
+Them: Particularly, we wanted to have clinical insights  
+Me: clinical insights in the sleep space as I've been  
+Them: in the sleep space as I mentioned,  
+Me: mentioned. First and obesity in the second. Sleeping  
+Them: first and obesity being the second. Sleep being  
+Me: like, taking insights like I was describing on the EMR  
+Them: like taking insights like I was describing on the EMR  
+Me: for, like, nutrition and whatnot. It would be, like, their CPAP, you  
+Them: for like nutrition and whatnot. It would be like their CPAP  
+Me: usage and other, like, medical device usage where  
+Them: usage and other like medical device usage where  
+Me: it would learn from that.  
+Them: would learn from that  
+Me: Usage to drive  
+Them: usage to drive  
+Me: life based  
+Them: lifestyle based  
+Me: but, like, they didn't interact with  
+Them: prompts in interaction with that user. So that would be I mean,  
+Me: that user. That would be I mean, I do.  
+Them: ideal  
+Me: MVP, but  
+Them: MVP, but if it needs to be scoped down for  
+Me: needs to be scaled down for cost reasons, we can start with  
+Them: cost reasons, we can start with just  
+Me: just other  
+Them: our EMR  
+Me: life lifestyle.  
+Them: lifestyle,  
+Me: Human  
+Them: human or sorry user to bot and like leave it there. Right? And then just  
+Me: there. Human then just kind of paint the picture for the road map. Okay.  
+Them: kind of paint the picture for the roadmap.  
+Me: To be able to do. Interesting. Yeah. Yeah. Coincidentally, I just we just,  
+Them: Is what we wanna be able to do.  
+Me: something for a sleep clinic, actually. Like, a neurologist has a sleep clinic who worked with us.  
+Them: Okay. Nice.  
+Me: It's very different, though. Like, they they wanted a transcription software, something to help transcribe clinical notes. That he records. It's like  
+Them: Mhmm.  
+Me: know, like, an hour and a half of audio for, like, 20 patients, and it takes them forever to transcribe it. So there's a lot of, like, sleep medicines, a lot of things like, yeah, CPAPs, sleep apnea.  
+Them: Yeah.  
+Me: Lot of medical conditions in there. So it's quite a challenge, actually, like, to make sure that all those things are correct. So, like, we don't wanna obviously don't want your bot to make things up, so we had to, like, hook it up to a real database of, like, drugs, real database of conditions. So it can get quite complex,  
+Them: Mhmm.  
+Me: pretty quick here, I'd say. I'm  
+Them: Yeah. I would imagine.  
+Me: The other thing is do you need the MVP to be HIPAA compliant? Because that also will add quite a bit of complexity.  
+Them: I think the MVP can be  
+Me: I think that MVP could be non HIPAA compliant, but I think  
+Them: non HIPAA compliant, but I think the framework needs to lend itself  
+Me: think that framework eventually.  
+Them: to be eventually.  
+Me: Yeah. So I think we just  
+Them: So I mean, I think we just wanna get something quick  
+Me: wanna get something quick so that we can start pitching.  
+Them: so that we can start pitching, and then we would create an environment  
+Me: Would prevent environment within our current EMR system. Yeah.  
+Them: within our current EMR system.  
+Me: One or two coaches that are kinda testing it, so it's not deployed through  
+Them: With, like, one or two coaches that are kinda testing it so it's not deployed throughout  
+Me: entire Yeah. And some fake patient data. Yeah. Yeah. Right. Yeah.  
+Them: entire network. Yeah. Yeah. Right. Does need to be integrated. With other EHRs, as well as your current EHR. So that that that's Eventually. The  
+Me: Eventually. Gotcha. We don't  
+Them: the scope.  
+Me: Yeah. Yeah, it's just like it is in between.  
+Them: Yeah. Well well, let's see. Yeah. The scope for the MVP is integrating it with their current EHR. So Yeah. It's not just, like, fine tuning and prompt injecting, like, the the bot, but also the work to integrate with the current EHR system as well.  
+Me: Yeah. I mean, we can propose, like, maybe or, like, different tiers of complexity. There's definitely there's a world in which we might wanna just do it completely outside of the EHR for now. Like, we can explore what it would look like to do that, but I imagine there's no way they would let you connect it unless the application is HIPAA compliant. So if we don't wanna deal with that right now, we could just set up, again, a a  
+Them: I see.  
+Me: not a real EHR, but, like, a dummy database and just do it that way for MVP. But if you think it would be more important for pitching to have it actually connected, then that's a different that'd be a little bit different. Yeah. Yeah. Both are Maybe we should see it, like,  
+Them: Yeah.  
+Me: side by side to make a choice. Yeah. We can do that.  
+Them: Maybe we should see it, like, side by side and make a choice. I mean,  
+Me: I think first the  
+Them: I think the first the most important is to show the core functionality and show the road map  
+Me: important is to show court  
+Them: of it and eventually have it be  
+Me: allow it to be kept a complaint to do.  
+Them: the framework allow it to be HIPAA compliant and  
+Me: I was in the goal. Being, it should be insured or  
+Them: obviously the goal being into EHRs or into other sort of HIPAA compliant environments that  
+Me: environments that the goal. Right now. So kinda like  
+Them: it can communicate with. Like that's the goal, right? So kinda like a plug in that  
+Me: a plug in they could turn on turn off. Yeah. Exactly. For the  
+Them: they could turn on or turn off  
+Me: Yeah. That's perfect. Actually, again, the thing we just made,  
+Them: you know, for the system.  
+Me: the the infrastructure we built for it was pretty easy to Like, when we were testing, we weren't doing it HIPAA compliant, obviously. But when we actually deployed it for the the sleep clinic, the neurologist, It was pretty easy. I could just swap it for our compliant infrastructure. Had to learn quite a bit about it, but I think we got that part down now. So it shouldn't be too bad  
+Them: Yeah.  
+Me: But yeah, I'm trying to think,  
+Them: I know another thing that Michelle wanted was to have markups  
+Me: Yeah.  
+Them: to present to investors as well.  
+Me: I feel like it would be best to step separate the two products. I'm not sure what I answered about it. Bryan puts it, like,  
+Them: I feel like it would be best to separate the two projects. I'm not sure how you feel about Bryan, in terms of, like, one project is is the POC for the chatbot, but then have another designer like, designer work on, like, the other  
+Me: Yeah. I I would probably agree as well. Actually, the more I think  
+Them: screens. For  
+Me: it, the more I think it doesn't make sense to integrate with the EHR for the first MVP, the proof of concept at least. Just because if we did that, we would have to do because HIPAA is pretty much all or nothing. We would have to do things like proper authorization, authentication, access trails, audit logs, stuff like that. Which is, like, a lot of overhead for just a proof of concept, I feel like. Again, we can do it, and I can do a proposal that has both options. But it does feel a little bit overkill.  
+Them: Okay.  
+Me: But yeah.  
+Them: And we will take your But if that's important to if that's what's done on you guys I mean, we you know your investors best. So if that's what's gonna land you guys the seed money, then I think, guys can decide on that priority. Maybe you can sort of give us two options, and then my cofounder and I can kind of kick it around and see what would make the most sense. I mean, obviously, our goal is  
+Me: Like the secret, and then we can really do it right. And so I think and from our  
+Them: to just land the seed round and then we can really do it right. And so I think  
+Me: funds this space.  
+Them: from our experience raising funds in this space,  
+Me: Really help because it shows clear  
+Them: the mock ups really help because it shows a clear  
+Me: description of what the room map's gonna be. Mhmm. For  
+Them: description of what the roadmap's gonna be.  
+Me: for the road map, and if we can, like,  
+Them: Or at least what our vision is for the road map and if we can land the right investor they could say,  
+Me: Mhmm. They can see. You know. Put it right or and all that stuff. At least we show them  
+Them: you know, going right or left and all that stuff. But at least we show that what we're  
+Me: impactful. Yeah. I mean, we could definitely do those in parallel, like, mock ups  
+Them: envisioning has been really impactful.  
+Me: for the future screens and then working on the actual chatbot functionality. And then, yeah, like, like you said, we'll give two options. Even if you decide to go, let the proof of concept non HIPAA compliant route, we'll still put it into, like, the road map where it's like, hey. Here's our plan. Make a HIPAA compliant. You know, we do have a plan. We're not just gonna wing it. We do know how to make it HIPAA compliant. We just haven't done it yet. So maybe that'll help. And we can, like, draft up all the technical documentation that you'll need for that.  
+Them: Mhmm.  
+Me: Okay. That makes sense.  
+Them: Okay.  
+Me: You're coming out. Actually, I had a good time. We just learned  
+Them: That makes sense.  
+Me: a ton about it. I actually have a, I just literally, like, today finished our case study about  
+Them: Nice.  
+Me: what we learned from it too, so I can send that to you as well. I had a little bit Maybe you have  
+Them: Yeah.  
+Me: person is sleep a little bit. Tap on because  
+Them: Maybe your person in sleep will like our chatbot because I'm they're telling you this  
+Me: bit.  
+Them: sleep market loves what we're I mean, we've pitched it to  
+Me: Yeah. So far. So  
+Them: several different sleep companies, and they're all about it. Well, at least so far. So  
+Me: we've got you know, we're consents for employees for funding  
+Them: we've gotten, you know, verbal consents for LOIs for our funding round for this. So  
+Me: for this. So that's why we wanna go after sleep first. Because we see a big place.  
+Them: that's why we wanna go after sleep first because we see a big Nice.  
+Me: Yeah. Yeah. That's pretty cool. Yeah.  
+Them: Niche for it right now. Yeah.  
+Me: Because it's you just video.  
+Them: Yeah. And you can, I think I sent you the video? We did a video case studies on YouTube that walks you through that transcription app.  
+Me: And something like Yeah. So  
+Them: Different models that they tried and and stuff like that.  
+Me: the user  
+Them: To  
+Me: at least some of the some of the videos are also in the written case studies, so we  
+Them: be able to transcribe the  
+Me: one. Yeah. I'll send I'll send the written one as well, but  
+Them: That'd be great.  
+Me: the written one does have a like, a demo on the side as well. It's like an interactive demo. Where you can actually try the non HIPAA compliant version of the application. We don't can't make the HIPAA compliant one. Public available, obviously, because how do you how do you authorize access to that?  
+Them: Mhmm.  
+Me: We do have a non HIPAA compliant demo of the transcription tool, you can try that as  
+Them: Right.  
+Me: It's, like, part of the case study. You'll see. Okay. That'd be great.  
+Them: Okay. That'd be great. That'll help us kinda frame it.  
+Me: All. Us, Kent. Frame it. And then how does it work So I mean, I don't I live with a  
+Them: And then how does it work? So, I mean, I don't I've met with a, you know, couple of  
+Me: you know, couple of different options of course. It's hard to know, like,  
+Them: developer options, of course, and it's hard to know, like, what  
+Me: what is the right fit. For. Okay? Built in now.  
+Them: is the right fit for, okay. You guys have built it. Now we're gonna go pitch it, and  
+Me: Gonna go kitchen. And something for So  
+Them: and something breaks or we were like, I don't know how that all works. But yeah, I think you guys have a clear picture of what we're  
+Me: we're trying to accomplish. We just need something functional for our picture that, you know, for anticipating on  
+Them: trying to accomplish. We just need something functional for  
+Me: about three to six months to get it Mhmm. Funding.  
+Them: our pitch, know, which we're anticipating will take about three to six months to get  
+Me: To close. So how does that work? For you?  
+Them: funding to close.  
+Me: So, usually, what we'll do  
+Them: So how does that work for you all?  
+Me: it's tough because we're just building a proof of concept, but and not, like, a full fledged product.  
+Them: Mhmm.  
+Me: So most likely, we're just gonna have to have, like, a set of like, decent examples we know will work and, like, tell the investors, hey. You should try these examples. You can play with it on your own as well. Like, you can try know, putting your own stuff in there. But there might be glitches here and there. It's really hard to, like, guarantee against that unless we spend a ton of time doing that. We actually built again, another tool, like an internal tool  
+Them: Yeah.  
+Me: just for testing Like, even changing one word in the prompt can change everything. We, like, change something to add units to dosages, and it started capitalizing drug names even though we didn't say anything about that. So it's can be really sensitive, but for proof of concept, I don't there's gonna be so many edge cases that we'll have to tackle where it's like, we could spend a lot of time on it, but I think it just makes sense to give a couple happy paths, as we call it, You know, hey. Try these examples. We know they're gonna do well. You can layer with it too. You can get a little creative.  
+Them: Yeah.  
+Me: Just know that there might be a weird glitches here and there. Even if the model changes, like, if if, you know, ChatGPT or whoever decides to update their model, something can break, and we'll have  
+Them: Mhmm.  
+Me: to fix all that. But, yeah, we'll probably just have to say, like, here's what we know will work. It's really hard to predict every single usage of it. And that's kind of, like, also why we would wanna start with a proof of concept in the first place. Yeah. Get those test coaches using it. They're gonna report bugs and problems  
+Them: Yeah.  
+Me: and, like, hey. When I ask this, it completely went off the rails. And then we'll fix that in the final. But I think, yeah, for a proof of concept, it's gonna be hard to expect it to, like, be 100% perfect. And we  
+Them: Totally. And we  
+Me: I totally understand that. I think it's a it can be found to take a  
+Them: totally understand that, and I think it's and maybe once we go further down  
+Me: couple of price  
+Them: the road, we have a couple of  
+Me: that we wanted to work for. We just finished a clinical trial  
+Them: I guess, key enterprise customers that we wanted to  
+Me: a company called Abiomed. They have a  
+Them: work for. We just finished a clinical trial with a company called ApneMed. They  
+Me: wearable ring that's like an oxygen saturation, but it's for the sleep market.  
+Them: have a wearable ring that's like oxygen saturation, but it's for the sleep market.  
+Me: And so we like to be able to show like, what that would look like because they're able  
+Them: And so we'd love to be able to show like what that would look like  
+Me: a potential you know, key investor buyer.  
+Them: because they're  
+Me: That kind of stuff. And then all of  
+Them: a potential, you know, key investor, buyer, all that kind of stuff.  
+Me: also, the general sleep. Like, physician interventions for drug  
+Them: And then also in like the general sleep, like physician interactions for driving like CPAP usage. But  
+Me: like CPAP. Usage. But the foundation for the bot should be the same no matter what. Whether it's, like, lifestyle and you know, clinical So I guess maybe that can give you just something to think about because wanna show it to some key strategic first. And so  
+Them: the foundation for the bot should be the same no matter what. Where it's, like, lifestyle and you know clinical. So I guess maybe that can give you because we wanna show it to some key strategics.  
+Me: those one would we wanna make sure work really well. So  
+Them: First. And so those one we would wanna make sure work really well so that  
+Me: Yeah. Yeah. I mean, we could definitely like to, like,  
+Them: we can get in.  
+Me: cheat a little bit, like, in terms of, like, make sure it definitely works for those use cases and, like, we don't have to fully test, like, I don't know, like, like, people with, like, multiple sclerosis. Like, we don't have to test those. You just cases right now. Like, we could Yeah. Do a little bit of surface level testing, but  
+Them: Yeah.  
+Me: yeah, we can definitely, like, hyperfocus it towards the initial use cases. Okay. And then, like, like you said, yeah, we'll as things get reported, like,  
+Them: Okay.  
+Me: we find issues, we can definitely get those fixed. Yeah. We can, like, do, like, like, hourly work or something to, like, touch those up if you're not ready for, like, a big like, full build out. I was gonna say,  
+Them: Mhmm.  
+Me: Oh, and then we'll also make sure you have access to the code like, whenever what as soon as we start working on it, you'll have access to the code. So things like if you need to just change the prompt, for example, like, you can just go in and do that. Okay. Don't necessarily need to, like, know how to, like, code or change things. You could teach the  
+Them: Okay.  
+Me: technical people. Yeah. Yeah. Yeah.  
+Them: Alright. You can teach the nontechnical people.  
+Me: Yeah. It's not too hard. I mean It's not too hard.  
+Them: Okay.  
+Me: Yeah. Sure. Okay. Well, it's like like I said, we just need to get the seed real that we can  
+Them: Right. Yeah. It's not too hard. Yeah. Okay. Alright. Well, it I said, we just need to get this  
+Me: really Exactly. Yeah. I mean, that was something else that we're talking about before. I'd like  
+Them: seed round, then we can really dive in. Right? Because  
+Me: work really wanna find a group where  
+Them: mean and that was something else that we were talking about before. It's like, we're we really wanna find a group where  
+Me: we can continue to this road. Together and just you know, kind of be  
+Them: we can continue down this road map together and just  
+Me: one trip partner hopefully, sort of an extension, you know,  
+Them: you know, kind of be long term partners hopefully and have  
+Me: we're trying to accomplish and  
+Them: sort of an extension you know, what we're trying to accomplish and  
+Me: first MVP, we're trying to keep it, like, super bare  
+Them: so, yeah, this first MVP we're trying to keep it like super bare bones like  
+Me: bones. Like the co founders are like fun to get our just so we can go out together. Yeah.  
+Them: the cofounders are, like, funding it ourselves just so we can go out to get  
+Me: Some real capital Right? And then if we really wanna go for it.  
+Them: some real capital, right? And then we really wanna go for it. So  
+Me: So Yeah. I will. Place that be prototype and then here's the mock ups, use of funds,  
+Them: we build the pitch, it'll be prototype and then here's the mock ups, use of  
+Me: and then here's the break. Up. So what  
+Them: funds, and then here's the road map. So  
+Me: trying to accomplish right now. For sure. Yeah. I I will say also to to toot  
+Them: that's what we're trying to accomplish right now.  
+Me: toot our own horn a little bit. A lot of, like, AI firms that you'll talk to will, like, claim everyone's gonna say they're an expert on AI. We found that the majority of them just build, like, chatbots and essentially what we call chat g p t wrappers. Like, all they do is use chat chat GBT with no fancy tech, they just, like, wrap around it, which, to be fair, for the proof of concept that we're building, kind of similar. It's kinda just a chatbot, kind of a chatty bitty wrapper. There's gonna be, like, additional technical challenges we'll have to solve, like pulling in the data. But at its core, like, chatbots are probably the simplest application of this. And in that aspect, yeah, I think I still think we're the experts, but we're probably not too far ahead of the other agencies you might speak with. But when it comes to other, like, full fledged in production, getting AI in production, I feel like that's actually our where our advantage is. Like, we  
+Them: Mhmm.  
+Me: we are, like, living and breathing AI right now. It changes every day literally. There's a new new Chinese model came out, like, yesterday. It's, like, beating every It's like, what's going on? But we're not just trying to chase, like, the new trends either. Like, for production apps, especially medical, they need to be stable enough. Yeah. And, again, that's what a lot of our case study is actually on too is, like, making it stable.  
+Them: Yeah. Great.  
+Me: And ready for production. Doesn't just look good in a in a demo, which, again, like I said, to be fair, that's what we're gonna be doing this first stage. But for the future build out, Yeah. We have a lot more experience building things for production, I would say. And that would be helpful.  
+Them: Yep.  
+Me: Like  
+Them: And that'll be helpful, like, any  
+Me: any kind of blur information, like, that would be helpful.  
+Them: kind of blurb or, information like that will be helpful. That not only we can put in our pitch deck, but we're also going for a a grant SBIR for innovation. I don't know if you guys have worked in those. So we wanna, like, kinda go after funding in a lot of  
+Me: We're submitting for. And then, basically,  
+Them: channels. And I can actually share with you, like, our breakdown of what we're  
+Me: we can see what where we're headed.  
+Them: submitting for in this space so you can see what where we're headed.  
+Me: Is so important as, you know, sort of  
+Them: With that. But like all that stuff is so important as, you know, sort of as we submit the  
+Me: as we submit the grant. To. Something like I I'd love to have any of that, specifically, because I did  
+Them: grant too. And Mhmm. So we'd love I I'd love to have any of that specifically to show  
+Me: differentiation. Yeah. Well, we can draft something up for sure, like, on our  
+Them: differentiation.  
+Me: on our experience on on what we're doing. Our our one of our cofounders, Chris, he even got sponsored recently by Anthropic, the the company that made Claude. He has a YouTube channel with, like, 35 k subscribers, and they're literally Anthropic is sponsoring him. So it's like, he's definitely an expert.  
+Them: That's cool. That's great. He has the most viewed, video on  
+Me: That's true. Helps? Claude is one of the biggest models, and, yeah, he has, like,  
+Them: ClotCode. On YouTube right now.  
+Me: the biggest video on it.  
+Them: Wow. That's awesome.  
+Me: We'll definitely, like, do something Okay. Blurb or whatever.  
+Them: That's so cool. Okay.  
+Me: Or, like, even, like, a write up. Yeah. That's like, here's our expertise. You know?  
+Them: Yeah.  
+Me: Yep. Be super helpful. Helpful. And  
+Them: Yeah. That would be super helpful, and  
+Me: share with you that we're gonna that we did. For them. Funding we've been  
+Them: and I can share with you the write up that we did for the  
+Me: for the last year. Taking.  
+Them: funding announcement for the SBIR that we're shooting for, this  
+Me: Six months. So we're anticipating to go  
+Them: September submission for that. Grants are, like, six months. So  
+Me: proceed between. Right? And then the  
+Them: we're anticipating to go for seed in between, right? And then if the grant hits,  
+Me: Yeah. We could do some other interesting things with that So let him  
+Them: you know, we can do some other interesting things with that. So  
+Me: we wanna some something quick dirty, but easy to fill with these strategic  
+Them: like I said, we want something  
+Me: as well.  
+Them: quick and dirty but easy to show in these strategics is where we're at right now.  
+Me: Right now. Yeah. Just send honestly, yeah, send that too because that might give me other ideas of, like, maybe like, here's one aspect I wanna focus on, like, a lot. Or something. Yeah. Send send that for sure. And then also, like, just what areas that you you would want us to contribute some bookings to. Just highlight those for us. Yeah. I can do that.  
+Them: Okay.  
+Me: Sweet. Okay.  
+Them: Yep. I can do that. I'll work with Bryan. We'll put together a proposal that contains the the design quote, and then well as the quote for the proof of concept, which is the chatbot. Okay. There was one other thing that you mentioned about the chatbot that had a functionality. You said, like,  
+Me: It was like  
+Them: it wasn't, like, was it the word you use was scale up, scale down? Yeah. The escalation.  
+Me: I think that's one of the key components we wanna show  
+Them: Yeah. Escalation and deescalation. I think that's one of the key  
+Me: within the concept that it'll  
+Them: components we wanna show within the proof of concept.  
+Me: ask to a human. And obviously,  
+Them: That it'll escalate to a human. And obviously on our services business,  
+Me: that could go more even the coaches, but eventually could go to a helps us  
+Them: that could go to our human coaches, but eventually it could go to a  
+Me: who would like we just  
+Them: health system team of professionals or who Like we just wanna show that  
+Me: escalation deescalation. I think that's  
+Them: multidisciplinary up escalation and de escalation  
+Me: be I mean, at least. Something because  
+Them: I think that'll be, I mean, at least in our mind, something a  
+Me: differentiator. How do you envision that for now? Is it just like sending off an email to their  
+Them: is a big differentiator.  
+Me: like, provider or, like, what do you, I mean, yeah, I know the function is. We could do. Like, within our EMR  
+Them: I mean, yeah, I don't know what the functions that we could do, but, like, within our EMR right now would be to create a  
+Me: a summary of what happened in the  
+Them: task for the human coach and, like, you know, give them a  
+Me: coach would take action and then some kind of  
+Them: a summary of what happened, and then the coach would take action. And then  
+Me: be thought and see what happened.  
+Them: somehow the action would be on that task and then the bot would see what happened. Like that's  
+Me: Work in most  
+Them: kind of what we thought about and what would probably work in most  
+Me: with human Yeah. That  
+Them: EMR systems with humans  
+Me: perfect. I don't know.  
+Them: integrated. So that was at least our vision. I know if  
+Me: But Like, we're hoping we could do, like,  
+Them: we'll be able to do that but  
+Me: like, a sandbox EMR just for the demo or something like that where it's, like,  
+Them: that's the thought.  
+Me: you know, we we send it with task, but it doesn't actually go to the email. It, like, goes to our like, fake EMR or something like I don't know. We'll I think  
+Them: Yeah.  
+Me: yeah, we can think about it. It's simple.  
+Them: Like, a sandbox EMR as in we create, like, a fake one, like, fake  
+Me: Yeah. Like, quick quick dummy interface that has, like,  
+Them: the simple user interface or something like that.  
+Me: yeah, some stuff like tasks and, like, some patients maybe. Because I think that might help people like investors, like, what's going on here. Yeah. This is kinda interesting. Okay. I'll think about because that that in itself, this proof of concept is essentially, like, in an interactive case study, like, in its own. Like, you want it to be you know, tell a story in itself. Yeah. To really drive it home, it might need something like that. Yeah. So we can we can work on that. I mean,  
+Them: Yeah.  
+Me: something like that shouldn't be hard to do. It because if we're just making, like, a dummy interface, it shouldn't be hard at all. But But I didn't get interest Yeah. Super cool.  
+Them: Well, glad you think it's interesting because we do.  
+Me: I I think it's it's  
+Them: It's good that you guys have a a good track record  
+Me: a successful company.  
+Them: of a successful company already. Right? That's gonna for sure, speed up the raise. It's it's it's really I'm not sure if you know, but it's really hard to raise right now with any pre revenue product. But because you guys already have this previously know, successful business that's profitable, We've got direct application of it. So that's what I think  
+Me: To  
+Them: is a big differentiator for us on this raise is, like, we could immediately drop  
+Me: that side of the house. But it's just we wanna do it right  
+Them: it into you know, thousands of clinics on that side of the house. But it's just  
+Me: now. Right. Make sure it's got all the feature eventually.  
+Them: we want to do it right, we want to build it right, we want to make sure it's got all the  
+Me: That's what we're doing.  
+Them: features eventually, but we just gotta go and get the capital for it on that side of the house. So  
+Me: For sure. I think could be actually really interesting. I think it's it's gonna be fun to work on for sure.  
+Them: that's what we're doing.  
+Me: Cool. Yeah. Let's get to hear.  
+Them: Cool. Yeah. That's good to hear. Awesome. Forward I'll follow-up with you on a time to probably later this week or early next week, we can  
+Me: Oh, I one more question actually for Michelle. Did you have any sort of, like, requirements document drawn up or even, like, a  
+Them: through the proposal together. Okay. That works. But we'll Yeah.  
+Me: Google Doc of, like, you know, here here's what we're had written down about the chatbot. That would help. Yeah. We have that. So I'll send you two things sort of  
+Them: Yeah. We have that.  
+Me: overview I don't looking for, like, some ideas of how  
+Them: I'll send you two things. It's sort of a overview of what we're looking for and, like, some ideas of how it would escalate, de escalate. But  
+Me: down for that.  
+Them: I'll send you that. The requirements and then also just what we broke down for the  
+Me: The other two things that would really help is if you had  
+Them: the SBIR grant has a lot of I think information in it already.  
+Me: some example, like, like, conversations that you would want happen. Like, just again, doesn't you don't have to take a lot of time to do that. Just  
+Them: Oh, okay.  
+Me: very quick. Like, human would say this, bot replies with this, and then Okay.  
+Them: Mhmm.  
+Me: Does this Yeah. I can do that. And then the final thing was if you had any ideas for  
+Them: Okay. Yep. I can do that.  
+Me: design vibe that you were going for, that might help too. Just like, hey. We like this style. We like to be more  
+Them: Mhmm.  
+Me: friendly, look like this website, this app, or more sterile and look like this app, this website, whatever. Sure.  
+Them: Okay.  
+Me: That's fine. Code. Founder. She's the design. Hate that. So that for a break. So Sweet. It will be That's not strict that won't be, like, strictly necessary for the proposal. But, like, before we actually do design, I think that helpful. Okay. That's helpful. Great. Okay. Thanks so much for the time. This is Thanks for your time. Appreciate it, Richard.  
+Them: Sure. That's my cofounder. She's the design I I'm not. So she's got stuff that we've we've worked on for our branding already. So we can kind of piggyback on that. Okay. Okay. That that's helpful. Great. Appreciate it. Thanks for your time.  
+Me: Bye bye. Bye.  
+Them: Oh, awesome. Appreciate it, Michelle. Talk soon. Speaking next week.

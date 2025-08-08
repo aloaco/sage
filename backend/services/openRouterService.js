@@ -1,4 +1,6 @@
 const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
 
 class OpenRouterService {
   constructor() {
@@ -48,12 +50,50 @@ class OpenRouterService {
     }
   }
 
-  async extractFeatures(transcript, pdfFiles = []) {
+  async extractFeatures(
+    transcript,
+    pdfFiles = [],
+    model = "google/gemini-2.5-flash",
+    localFiles = [],
+    localTranscript = null
+  ) {
     console.log("🔍 [OpenRouter] Starting feature extraction process");
-    console.log(
-      `📝 [OpenRouter] Transcript length: ${transcript.length} characters`
-    );
+
+    // Handle local transcript file if provided
+    let finalTranscript = transcript;
+    if (localTranscript) {
+      const transcriptPath = path.join(
+        __dirname,
+        "..",
+        "local_transcript",
+        localTranscript
+      );
+      try {
+        if (fs.existsSync(transcriptPath)) {
+          finalTranscript = fs.readFileSync(transcriptPath, "utf8");
+          console.log(
+            `📄 [OpenRouter] Successfully loaded local transcript: ${localTranscript} (${finalTranscript.length} characters)`
+          );
+        } else {
+          console.warn(
+            `⚠️ [OpenRouter] Local transcript file not found: ${localTranscript}, using provided transcript`
+          );
+        }
+      } catch (error) {
+        console.error(
+          `❌ [OpenRouter] Error reading local transcript ${localTranscript}:`,
+          error.message
+        );
+        console.log("📝 [OpenRouter] Falling back to provided transcript");
+      }
+    } else {
+      console.log(
+        `📝 [OpenRouter] Transcript length: ${finalTranscript?.length || 0} characters`
+      );
+    }
+
     console.log(`📄 [OpenRouter] PDF files provided: ${pdfFiles.length}`);
+    console.log(`📁 [OpenRouter] Local files requested: ${localFiles.length}`);
 
     const systemMessage = {
       role: "system",
@@ -64,10 +104,11 @@ class OpenRouterService {
     const userContent = [
       {
         type: "text",
-        text: `Project Transcript: ${transcript}`,
+        text: `Project Transcript: ${finalTranscript}`,
       },
     ];
 
+    // Process uploaded PDF files
     if (pdfFiles && pdfFiles.length > 0) {
       pdfFiles.forEach((dataUrl, index) => {
         userContent.push({
@@ -80,6 +121,41 @@ class OpenRouterService {
       });
     }
 
+    // Process local PDF files
+    if (localFiles && localFiles.length > 0) {
+      for (let i = 0; i < localFiles.length; i++) {
+        const filename = localFiles[i];
+        const filePath = path.join(__dirname, "..", "local_files", filename);
+
+        try {
+          if (fs.existsSync(filePath)) {
+            const fileBuffer = fs.readFileSync(filePath);
+            const base64Data = fileBuffer.toString("base64");
+            const dataUrl = `data:application/pdf;base64,${base64Data}`;
+
+            userContent.push({
+              type: "file",
+              file: {
+                file_name: filename,
+                file_data: dataUrl,
+              },
+            });
+
+            console.log(
+              `📁 [OpenRouter] Successfully loaded local file: ${filename}`
+            );
+          } else {
+            console.warn(`⚠️ [OpenRouter] Local file not found: ${filename}`);
+          }
+        } catch (error) {
+          console.error(
+            `❌ [OpenRouter] Error reading local file ${filename}:`,
+            error.message
+          );
+        }
+      }
+    }
+
     const userMessage = {
       role: "user",
       content: userContent,
@@ -89,7 +165,7 @@ class OpenRouterService {
     console.log(
       "📤 [OpenRouter] Calling OpenRouter API for feature extraction..."
     );
-    return this.chatWithPDFs(messages);
+    return this.chatWithPDFs(messages, model || "google/gemini-2.5-flash");
   }
 
   async chatWithPDFs(messages, model = "google/gemini-2.5-flash") {
@@ -168,7 +244,11 @@ class OpenRouterService {
     }
   }
 
-  async analyzePriorities(featuresJson, transcript) {
+  async analyzePriorities(
+    featuresJson,
+    transcript,
+    model = "google/gemini-2.5-flash"
+  ) {
     console.log("🤖 Starting priority analysis...");
 
     const systemMessage = {
@@ -193,7 +273,7 @@ Consider business impact, technical dependencies, and development sequence when 
     const messages = [systemMessage, userMessage];
 
     const request = {
-      model: "openai/gpt-5-mini",
+      model: model || "google/gemini-2.5-flash",
       messages,
       temperature: 0.7,
       max_tokens: 4000,
@@ -269,7 +349,12 @@ Consider business impact, technical dependencies, and development sequence when 
     }
   }
 
-  async analyzeRisks(featuresJson, prioritiesJson, transcript) {
+  async analyzeRisks(
+    featuresJson,
+    prioritiesJson,
+    transcript,
+    model = "google/gemini-2.5-flash"
+  ) {
     console.log("🛡️ Starting risk analysis...");
 
     const systemMessage = {
@@ -302,7 +387,7 @@ For each risk, provide specific impact assessment and actionable mitigation stra
     const messages = [systemMessage, userMessage];
 
     const request = {
-      model: "google/gemini-2.5-flash",
+      model: model || "google/gemini-2.5-flash",
       messages,
       temperature: 0.7,
       max_tokens: 4000,
@@ -401,7 +486,13 @@ For each risk, provide specific impact assessment and actionable mitigation stra
     }
   }
 
-  async generatePOCs(featuresJson, prioritiesJson, risksJson, hourlyRate) {
+  async generatePOCs(
+    featuresJson,
+    prioritiesJson,
+    risksJson,
+    hourlyRate,
+    model = "google/gemini-2.5-flash"
+  ) {
     console.log("🚀 Starting POC generation...");
 
     const systemMessage = {
@@ -440,7 +531,7 @@ Each POC should include:
     const messages = [systemMessage, userMessage];
 
     const request = {
-      model: "google/gemini-2.5-flash",
+      model: model || "google/gemini-2.5-flash",
       messages,
       temperature: 0.7,
       max_tokens: 4000,
@@ -538,7 +629,8 @@ Each POC should include:
     featuresJson,
     prioritiesJson,
     risksJson,
-    hourlyRate
+    hourlyRate,
+    model = "google/gemini-2.5-flash"
   ) {
     console.log("🏗️ Starting MVP generation...");
 
@@ -583,7 +675,7 @@ The MVP should be production-ready and scalable, building upon the selected POC 
     const messages = [systemMessage, userMessage];
 
     const request = {
-      model: "google/gemini-2.5-flash",
+      model: model || "google/gemini-2.5-flash",
       messages,
       temperature: 0.7,
       max_tokens: 4000,
