@@ -247,36 +247,136 @@ class OpenRouterService {
   async analyzePriorities(
     featuresJson,
     transcript,
-    model = "google/gemini-2.5-flash"
+    model = "google/gemini-2.5-flash",
+    localFiles = [],
+    localTranscript = null
   ) {
-    console.log("🤖 Starting priority analysis...");
+    console.log("🎯 [OpenRouter] Starting priority analysis process");
+
+    // Handle local transcript file if provided
+    let finalTranscript = transcript;
+    if (localTranscript) {
+      const transcriptPath = path.join(
+        __dirname,
+        "..",
+        "local_transcript",
+        localTranscript
+      );
+      try {
+        if (fs.existsSync(transcriptPath)) {
+          finalTranscript = fs.readFileSync(transcriptPath, "utf8");
+          console.log(
+            `📄 [OpenRouter] Successfully loaded local transcript: ${localTranscript} (${finalTranscript.length} characters)`
+          );
+        } else {
+          console.warn(
+            `⚠️ [OpenRouter] Local transcript file not found: ${localTranscript}, using provided transcript`
+          );
+        }
+      } catch (error) {
+        console.error(
+          `❌ [OpenRouter] Error reading local transcript ${localTranscript}:`,
+          error.message
+        );
+        console.log("📝 [OpenRouter] Falling back to provided transcript");
+      }
+    } else {
+      console.log(
+        `📝 [OpenRouter] Transcript length: ${finalTranscript?.length || 0} characters`
+      );
+    }
+
+    console.log(`📁 [OpenRouter] Local files requested: ${localFiles.length}`);
 
     const systemMessage = {
       role: "system",
       content:
-        "You are a software project analyst specializing in feature prioritization. Analyze the extracted features and project context to determine business priorities. Consider factors like: revenue impact, user value, technical dependencies, development complexity, and risk mitigation. Provide clear reasoning for each priority level.",
+        "You are a software project analyst specializing in feature prioritization. Analyze the extracted features and project context (including transcript and any additional PDF documents) to determine business priorities. Consider factors like: revenue impact, user value, technical dependencies, development complexity, and risk mitigation. Provide clear reasoning for each priority level.",
     };
 
-    const userMessage = {
-      role: "user",
-      content: `Please analyze these extracted features and provide priority recommendations based on the project context:
+    const userContent = [
+      {
+        type: "text",
+        text: `Please analyze these extracted features and provide priority recommendations based on the project context:
 
 EXTRACTED FEATURES:
 ${featuresJson}
 
 PROJECT CONTEXT:
-${transcript}
+${finalTranscript}
 
 Consider business impact, technical dependencies, and development sequence when assigning priorities.`,
+      },
+    ];
+
+    // Process local PDF files
+    if (localFiles && localFiles.length > 0) {
+      for (let i = 0; i < localFiles.length; i++) {
+        const filename = localFiles[i];
+        const filePath = path.join(__dirname, "..", "local_files", filename);
+
+        try {
+          if (fs.existsSync(filePath)) {
+            const fileBuffer = fs.readFileSync(filePath);
+            const base64Data = fileBuffer.toString("base64");
+            const dataUrl = `data:application/pdf;base64,${base64Data}`;
+
+            userContent.push({
+              type: "file",
+              file: {
+                file_name: filename,
+                file_data: dataUrl,
+              },
+            });
+
+            console.log(
+              `📁 [OpenRouter] Successfully loaded local file: ${filename}`
+            );
+          } else {
+            console.warn(`⚠️ [OpenRouter] Local file not found: ${filename}`);
+          }
+        } catch (error) {
+          console.error(
+            `❌ [OpenRouter] Error reading local file ${filename}:`,
+            error.message
+          );
+        }
+      }
+    }
+
+    const userMessage = {
+      role: "user",
+      content: userContent,
     };
 
     const messages = [systemMessage, userMessage];
+    console.log(
+      "📤 [OpenRouter] Calling OpenRouter API for priority analysis..."
+    );
+    return this.analyzePrioritiesWithPDFs(
+      messages,
+      model || "google/gemini-2.5-flash"
+    );
+  }
+
+  async analyzePrioritiesWithPDFs(messages, model = "google/gemini-2.5-flash") {
+    if (!this.apiKey) {
+      throw new Error("OpenRouter API key not configured");
+    }
 
     const request = {
-      model: model || "google/gemini-2.5-flash",
+      model,
       messages,
       temperature: 0.7,
       max_tokens: 4000,
+      plugins: [
+        {
+          id: "file-parser",
+          pdf: {
+            engine: "pdf-text",
+          },
+        },
+      ],
       response_format: {
         type: "json_schema",
         json_schema: {
@@ -323,7 +423,6 @@ Consider business impact, technical dependencies, and development sequence when 
     };
 
     try {
-      console.log("📤 Sending priority analysis request to OpenRouter...");
       const response = await axios.post(
         `${this.baseUrl}/chat/completions`,
         request,
@@ -337,12 +436,11 @@ Consider business impact, technical dependencies, and development sequence when 
         }
       );
 
-      const result = response.data.choices[0]?.message?.content || "";
-      console.log("✅ Priority analysis response received");
-      return result;
+      return response.data.choices[0]?.message?.content || "";
     } catch (error) {
+      console.log("error", error);
       console.error(
-        "❌ Priority analysis API call failed:",
+        "OpenRouter PDF API call failed:",
         error.response?.data || error.message
       );
       throw error;
@@ -353,19 +451,57 @@ Consider business impact, technical dependencies, and development sequence when 
     featuresJson,
     prioritiesJson,
     transcript,
-    model = "google/gemini-2.5-flash"
+    model = "google/gemini-2.5-flash",
+    localFiles = [],
+    localTranscript = null
   ) {
-    console.log("🛡️ Starting risk analysis...");
+    console.log("🛡️ [OpenRouter] Starting risk analysis process");
+
+    // Handle local transcript file if provided
+    let finalTranscript = transcript;
+    if (localTranscript) {
+      const transcriptPath = path.join(
+        __dirname,
+        "..",
+        "local_transcript",
+        localTranscript
+      );
+      try {
+        if (fs.existsSync(transcriptPath)) {
+          finalTranscript = fs.readFileSync(transcriptPath, "utf8");
+          console.log(
+            `📄 [OpenRouter] Successfully loaded local transcript: ${localTranscript} (${finalTranscript.length} characters)`
+          );
+        } else {
+          console.warn(
+            `⚠️ [OpenRouter] Local transcript file not found: ${localTranscript}, using provided transcript`
+          );
+        }
+      } catch (error) {
+        console.error(
+          `❌ [OpenRouter] Error reading local transcript ${localTranscript}:`,
+          error.message
+        );
+        console.log("📝 [OpenRouter] Falling back to provided transcript");
+      }
+    } else {
+      console.log(
+        `📝 [OpenRouter] Transcript length: ${finalTranscript?.length || 0} characters`
+      );
+    }
+
+    console.log(`📁 [OpenRouter] Local files requested: ${localFiles.length}`);
 
     const systemMessage = {
       role: "system",
       content:
-        "You are a software project risk analyst with expertise in identifying technical, timeline, and resource risks. Analyze the features, priorities, and project context to identify potential risks that could impact project success. Focus on dependencies, complexity, uncertainties, and external factors. Provide specific mitigation strategies for each identified risk.",
+        "You are a software project risk analyst with expertise in identifying technical, timeline, and resource risks. Analyze the features, priorities, and project context (including transcript and any additional PDF documents) to identify potential risks that could impact project success. Focus on dependencies, complexity, uncertainties, and external factors. Provide specific mitigation strategies for each identified risk.",
     };
 
-    const userMessage = {
-      role: "user",
-      content: `Please analyze the following project information and identify potential risks:
+    const userContent = [
+      {
+        type: "text",
+        text: `Please analyze the following project information and identify potential risks:
 
 EXTRACTED FEATURES:
 ${featuresJson}
@@ -374,7 +510,7 @@ FEATURE PRIORITIES:
 ${prioritiesJson}
 
 PROJECT CONTEXT:
-${transcript}
+${finalTranscript}
 
 Analyze risks across these categories:
 - Technical: API dependencies, complex integrations, new technologies, scalability concerns
@@ -382,15 +518,75 @@ Analyze risks across these categories:
 - Resource: Skill gaps, third-party services, infrastructure requirements
 
 For each risk, provide specific impact assessment and actionable mitigation strategies.`,
+      },
+    ];
+
+    // Process local PDF files
+    if (localFiles && localFiles.length > 0) {
+      for (let i = 0; i < localFiles.length; i++) {
+        const filename = localFiles[i];
+        const filePath = path.join(__dirname, "..", "local_files", filename);
+
+        try {
+          if (fs.existsSync(filePath)) {
+            const fileBuffer = fs.readFileSync(filePath);
+            const base64Data = fileBuffer.toString("base64");
+            const dataUrl = `data:application/pdf;base64,${base64Data}`;
+
+            userContent.push({
+              type: "file",
+              file: {
+                file_name: filename,
+                file_data: dataUrl,
+              },
+            });
+
+            console.log(
+              `📁 [OpenRouter] Successfully loaded local file: ${filename}`
+            );
+          } else {
+            console.warn(`⚠️ [OpenRouter] Local file not found: ${filename}`);
+          }
+        } catch (error) {
+          console.error(
+            `❌ [OpenRouter] Error reading local file ${filename}:`,
+            error.message
+          );
+        }
+      }
+    }
+
+    const userMessage = {
+      role: "user",
+      content: userContent,
     };
 
     const messages = [systemMessage, userMessage];
+    console.log("📤 [OpenRouter] Calling OpenRouter API for risk analysis...");
+    return this.analyzeRisksWithPDFs(
+      messages,
+      model || "google/gemini-2.5-flash"
+    );
+  }
+
+  async analyzeRisksWithPDFs(messages, model = "google/gemini-2.5-flash") {
+    if (!this.apiKey) {
+      throw new Error("OpenRouter API key not configured");
+    }
 
     const request = {
-      model: model || "google/gemini-2.5-flash",
+      model,
       messages,
       temperature: 0.7,
       max_tokens: 4000,
+      plugins: [
+        {
+          id: "file-parser",
+          pdf: {
+            engine: "pdf-text",
+          },
+        },
+      ],
       response_format: {
         type: "json_schema",
         json_schema: {
@@ -460,7 +656,6 @@ For each risk, provide specific impact assessment and actionable mitigation stra
     };
 
     try {
-      console.log("📤 Sending risk analysis request to OpenRouter...");
       const response = await axios.post(
         `${this.baseUrl}/chat/completions`,
         request,
@@ -474,12 +669,11 @@ For each risk, provide specific impact assessment and actionable mitigation stra
         }
       );
 
-      const result = response.data.choices[0]?.message?.content || "";
-      console.log("✅ Risk analysis response received");
-      return result;
+      return response.data.choices[0]?.message?.content || "";
     } catch (error) {
+      console.log("error", error);
       console.error(
-        "❌ Risk analysis API call failed:",
+        "OpenRouter PDF API call failed:",
         error.response?.data || error.message
       );
       throw error;

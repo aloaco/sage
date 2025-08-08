@@ -84,23 +84,25 @@ router.post("/analyze-priorities", async (req, res) => {
   console.log("🎯 [API] Starting priority analysis request");
 
   try {
-    const { featuresJson, transcript, model } = req.body;
+    const { featuresJson, transcript, model, local_files, local_transcript } = req.body;
 
-    if (!featuresJson || !transcript) {
+    if (!featuresJson || (!transcript && !local_transcript)) {
       console.log("❌ [API] Priority analysis failed: Missing required data");
       return res
         .status(400)
-        .json({ error: "Features and transcript are required" });
+        .json({ error: "Features and transcript or local_transcript are required" });
     }
 
     console.log(
-      `📊 [API] Analyzing priorities for ${JSON.parse(featuresJson).length || 0} features`
+      `📊 [API] Analyzing priorities for ${JSON.parse(featuresJson).length || 0} features with ${local_files?.length || 0} local files${local_transcript ? ` and local transcript: ${local_transcript}` : ''}`
     );
 
     const result = await openRouterService.analyzePriorities(
       featuresJson,
       transcript,
-      model
+      model,
+      local_files,
+      local_transcript
     );
 
     const duration = Date.now() - startTime;
@@ -124,24 +126,26 @@ router.post("/analyze-risks", async (req, res) => {
   console.log("🛡️ [API] Starting risk analysis request");
 
   try {
-    const { featuresJson, prioritiesJson, transcript, model } = req.body;
+    const { featuresJson, prioritiesJson, transcript, model, local_files, local_transcript } = req.body;
 
-    if (!featuresJson || !prioritiesJson || !transcript) {
+    if (!featuresJson || !prioritiesJson || (!transcript && !local_transcript)) {
       console.log("❌ [API] Risk analysis failed: Missing required data");
       return res
         .status(400)
-        .json({ error: "Features, priorities, and transcript are required" });
+        .json({ error: "Features, priorities, and transcript or local_transcript are required" });
     }
 
     console.log(
-      `🔍 [API] Analyzing risks for ${JSON.parse(featuresJson).length || 0} features and ${JSON.parse(prioritiesJson).length || 0} priorities`
+      `🔍 [API] Analyzing risks for ${JSON.parse(featuresJson).length || 0} features and ${JSON.parse(prioritiesJson).length || 0} priorities with ${local_files?.length || 0} local files${local_transcript ? ` and local transcript: ${local_transcript}` : ''}`
     );
 
     const result = await openRouterService.analyzeRisks(
       featuresJson,
       prioritiesJson,
       transcript,
-      model
+      model,
+      local_files,
+      local_transcript
     );
 
     const duration = Date.now() - startTime;

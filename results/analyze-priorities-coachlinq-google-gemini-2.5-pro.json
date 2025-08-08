@@ -1,0 +1,86 @@
+{
+  "timestamp": "2025-01-08T13:25:00Z",
+  "endpoint": "/api/ai/analyze-priorities",
+  "model": "google/gemini-2.5-pro",
+  "input_files": {
+    "local_transcript": "CoachLinq Follow up Call Transcript.txt",
+    "local_files": [
+      "Coachlinq intro call.pdf",
+      "Example Conversations CoachLinq.pdf", 
+      "NIH_SBIR_FOA_Questionnaire_CoachLinq_V2.pdf"
+    ]
+  },
+  "features_analyzed": 11,
+  "response": {
+    "data": {
+      "priorities": [
+        {
+          "feature": "AI Health Coaching Chatbot",
+          "id": "feat-001",
+          "priority": "high",
+          "reasoning": "This is the core component of the product and the absolute foundation for the proof-of-concept (PoC). All other features depend on its existence. The primary goal is to create a functional prototype for pitching to investors, and this feature represents the central user experience that needs to be demonstrated."
+        },
+        {
+          "feature": "Escalation and De-escalation Workflow",
+          "id": "feat-002",
+          "priority": "high",
+          "reasoning": "Explicitly identified in the transcript as a 'key piece' and a 'big differentiator'. Demonstrating this functionality is critical for the investor pitch to show how the AI integrates with human coaches, which is a core part of the business model and value proposition."
+        },
+        {
+          "feature": "Specialized Insights for Sleep and Obesity",
+          "id": "feat-006",
+          "priority": "high",
+          "reasoning": "This feature provides the necessary substance and focus for the chatbot demo. The context highlights that the client wants to 'go after sleep first' due to strong market interest and existing Letters of Intent (LOIs). Demonstrating specific, valuable insights in this niche makes the PoC much more compelling to strategic investors."
+        },
+        {
+          "feature": "Investor-Focused Mockups",
+          "id": "feat-008",
+          "priority": "high",
+          "reasoning": "The client explicitly stated that 'the mock ups really help because it shows a clear description of what the roadmap's gonna be'. These are essential for communicating the long-term vision (e.g., the Health Coach Tool) to investors without building out the full functionality, directly supporting the primary goal of securing seed funding."
+        },
+        {
+          "feature": "Sandbox EMR for Demo Purposes",
+          "id": "feat-011",
+          "priority": "high",
+          "reasoning": "This is a critical enabler for the MVP demo. It provides a practical, low-overhead way to showcase the Escalation Workflow (feat-002) without tackling the complexity and HIPAA compliance requirements of a real EMR integration. The transcript conversation directly leads to this as a pragmatic solution for the PoC."
+        },
+        {
+          "feature": "HIPAA-Ready Architecture",
+          "id": "feat-007",
+          "priority": "medium",
+          "reasoning": "While the MVP itself will be non-HIPAA compliant, the client specified the 'framework needs to lend itself to be eventually' compliant. This is an architectural consideration that must be incorporated into the MVP build to ensure future viability and demonstrate foresight to investors. It's not a demo feature but a foundational requirement for the build."
+        },
+        {
+          "feature": "Plug-in Architecture",
+          "id": "feat-009",
+          "priority": "medium",
+          "reasoning": "Similar to HIPAA-readiness, this is a core architectural principle that defines the long-term vision of the product as a 'Stripe-like plug-in'. The MVP must be built with this modularity in mind to be credible, even if the initial build only connects to the sandbox EMR. It's a foundational priority for the development team."
+        },
+        {
+          "feature": "EMR/EHR Integration for Clinical Insights",
+          "id": "feat-003",
+          "priority": "medium",
+          "reasoning": "This is the real-world implementation of the sandbox demo (feat-011). While too complex for the initial PoC due to HIPAA and technical overhead, it is the immediate next step after securing seed funding. It's a high-priority feature for the post-MVP roadmap."
+        },
+        {
+          "feature": "Health Coach Clinical Insight Tool",
+          "id": "feat-005",
+          "priority": "medium",
+          "reasoning": "The client explicitly identified this as a 'second step' feature. Its functionality should be communicated via the high-priority mockups (feat-008) in the initial phase. The actual development is a medium priority, as it's a fast-follow feature to be built after the seed round is secured."
+        },
+        {
+          "feature": "Continuous Learning System",
+          "id": "feat-004",
+          "priority": "low",
+          "reasoning": "This is a complex, long-term feature that requires significant data from real-world user and coach interactions. It is part of the future vision but is not feasible or necessary for the initial PoC. Its value can be mentioned in the pitch, but development effort should be deferred until after the core product is established and generating data."
+        },
+        {
+          "feature": "Reporting Dashboard for KPI Tracking",
+          "id": "feat-010",
+          "priority": "low",
+          "reasoning": "While mentioned in the background documents, the primary focus of the investor pitch is the novel chatbot interaction and escalation workflow. A 'robust' reporting dashboard is a feature for a more mature product to prove ROI to enterprise clients. For the PoC, this functionality is best represented in mockups rather than taking development resources from core features."
+        }
+      ]
+    }
+  }
+}

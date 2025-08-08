@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-01-08T13:55:00Z",
+  "endpoint": "/api/ai/generate-pocs",
+  "model": "google/gemini-2.5-pro",
+  "input_data": {
+    "features_source": "extract-features-coachlinq-google-gemini-2.5-pro.json",
+    "priorities_source": "analyze-priorities-coachlinq-google-gemini-2.5-pro.json",
+    "risks_source": "analyze-risks-coachlinq-google-gemini-2.5-pro.json",
+    "hourly_rate": 110
+  },
+  "poc_versions_generated": 3,
+  "response": {
+    "data": "{\n  \"pocVersions\": [\n    {\n      \"cost\": 25300,\n      \"features\": [\n        \"Patient Engagement and Session Management: Build the core scheduling, tracking, and session management system to enable service delivery.\",\n        \"Patient Onboarding via Chatbot: Automate patient intake and data collection to improve operational efficiency for coaches.\",\n        \"AI Health Coach Chatbot Interface: A basic, scripted version for onboarding and sending automated reminders/follow-ups linked to sessions.\"\n      ],\n      \"focus\": \"revenue\",\n      \"id\": \"poc-rev-001\",\n      \"timeEstimate\": \"5-6 weeks\",\n      \"title\": \"Rapid Service Delivery Platform\"\n    },\n    {\n      \"cost\": 34100,\n      \"features\": [\n        \"AI Health Coach Chatbot Interface: A polished, conversational demo to showcase the core user experience.\",\n        \"Continuous Learning System (Prototype): Demonstrate the AI's ability to improve from feedback, proving the model's scalability and defensibility.\",\n        \"Clinical Insight Generation Engine (Demo): Process a sample dataset to generate a compelling dashboard, showing the B2B data value proposition.\",\n        \"Patient Onboarding via Chatbot: A 'happy path' onboarding flow to populate the system with data for the demo.\"\n      ],\n      \"focus\": \"fundraising\",\n      \"id\": \"poc-fund-001\",\n      \"timeEstimate\": \"7-8 weeks\",\n      \"title\": \"Vision & Scalability Showcase\"\n    },\n    {\n      \"cost\": 30800,\n      \"features\": [\n        \"Technical Spike: HIPAA-Ready Architecture: Design and build the foundational infrastructure on HIPAA-eligible services to ensure future compliance.\",\n        \"Technical Spike: AI Safety via RAG: Implement a Retrieval-Augmented Generation (RAG) pipeline to ground the AI in a curated knowledge base, mitigating hallucinations.\",\n        \"AI Health Coach Chatbot Interface (Prototype): A minimal interface to test and prove the safety and accuracy of the RAG system.\",\n        \"Feedback Loop for Continuous Learning: Create a simple mechanism for a human to correct AI responses and update the knowledge base.\"\n      ],\n      \"focus\": \"risk-mitigation\",\n      \"id\": \"poc-risk-001\",\n      \"timeEstimate\": \"6-7 weeks\",\n      \"title\": \"Feasibility & Safety Core\"\n    }\n  ]\n}"
+  }
+}

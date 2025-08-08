@@ -1,0 +1,134 @@
+{
+  "timestamp": "2025-01-08T13:15:00Z",
+  "endpoint": "/api/ai/analyze-priorities",
+  "model": "openai/gpt-4.1",
+  "input_files": {
+    "local_transcript": "CoachLinq Follow up Call Transcript.txt",
+    "local_files": [
+      "Coachlinq intro call.pdf",
+      "Example Conversations CoachLinq.pdf", 
+      "NIH_SBIR_FOA_Questionnaire_CoachLinq_V2.pdf"
+    ]
+  },
+  "features_analyzed": 19,
+  "response": {
+    "data": {
+      "priorities": [
+        {
+          "id": "feat-001",
+          "feature": "Chatbot Proof-of-Concept Integrated with Practice Better EMR",
+          "priority": "high",
+          "reasoning": "This is the central deliverable for the MVP phase, explicitly required by both the funding proposal and the founders for pitching to investors. It enables demonstration of core functionality and validates the primary technical integration with a real-world system. Its success is critical for securing funding and partner buy-in."
+        },
+        {
+          "id": "feat-002",
+          "feature": "Patient Onboarding via Chatbot",
+          "priority": "high",
+          "reasoning": "Smooth patient onboarding is a key part of the MVP scope, directly supporting user value and engagement. Quick onboarding is also repeatedly mentioned in user scenarios and is essential for demonstrating the chatbot's utility in investor demos."
+        },
+        {
+          "id": "feat-003",
+          "feature": "Patient Engagement and Session Management",
+          "priority": "high",
+          "reasoning": "Ongoing patient engagement is core to CoachLinq's value proposition and is a required MVP feature per the project context. Demonstrating the bot's ability to manage sessions and maintain engagement is essential for both user value and investor confidence."
+        },
+        {
+          "id": "feat-004",
+          "feature": "Robust Reporting Dashboard for KPI Tracking",
+          "priority": "high",
+          "reasoning": "A reporting dashboard is specifically called out as an MVP deliverable in the company background and proposal. It is crucial for demonstrating outcome tracking and business value to both customers and investors."
+        },
+        {
+          "id": "feat-005",
+          "feature": "Escalation and De-escalation Workflow (Human-in-the-Loop)",
+          "priority": "high",
+          "reasoning": "This is a major differentiator and explicitly cited as a 'key component' for the proof-of-concept. It is repeatedly emphasized in stakeholder conversations as critical for safety, credibility, and investor appeal."
+        },
+        {
+          "id": "feat-015",
+          "feature": "Dummy/Sandbox EMR Interface for MVP Demo",
+          "priority": "high",
+          "reasoning": "Given the desire to avoid HIPAA complexity for the MVP but still show realistic integration and escalation, a sandbox EMR is essential. It enables a convincing demo while mitigating compliance and technical risk."
+        },
+        {
+          "id": "feat-016",
+          "feature": "Nudges, Reminders, and Progress Tracking for Patients",
+          "priority": "medium",
+          "reasoning": "These features directly support engagement and are demonstrated in example conversations, but they can be implemented with relatively simple logic in the MVP. Important for user experience, but can be basic in the initial phase."
+        },
+        {
+          "id": "feat-012",
+          "feature": "Conversation Log and Behavioral History Tracking",
+          "priority": "medium",
+          "reasoning": "While not strictly required for the initial MVP demo, conversation logging underpins future insight generation and personalization. It is important for longitudinal analysis and should be implemented early, but can be basic at first."
+        },
+        {
+          "id": "feat-018",
+          "feature": "Usability Testing and Feedback Module",
+          "priority": "medium",
+          "reasoning": "Usability testing is a Phase I milestone and required for SBIR reporting. However, the feedback module itself can be lightweight initially (e.g., simple forms), with more advanced tooling deferred until later phases."
+        },
+        {
+          "id": "feat-019",
+          "feature": "Compliance-Ready Technical Framework (HIPAA Roadmap)",
+          "priority": "medium",
+          "reasoning": "While HIPAA compliance is not required for the MVP, the framework should be designed to accommodate future compliance needs. Initial technical planning is important, but full implementation can be deferred until after funding."
+        },
+        {
+          "id": "feat-006",
+          "feature": "Clinical Insight Generation Engine",
+          "priority": "medium",
+          "reasoning": "This is a cornerstone for the long-term platform, but for the MVP, a basic rule-based version is sufficient. Advanced AI-driven insight generation can be developed post-pilot as the product matures."
+        },
+        {
+          "id": "feat-007",
+          "feature": "Clinical Logic Layer with Escalation Protocols",
+          "priority": "medium",
+          "reasoning": "Some rule-based logic is essential for escalation in the MVP, but more advanced or AI-enhanced protocols can be phased in later. Initial implementation should focus on basic, demonstrable rules."
+        },
+        {
+          "id": "feat-008",
+          "feature": "Dual-Facing Interface (Patient and Coach Views)",
+          "priority": "medium",
+          "reasoning": "The dual interface is a future differentiator, but the first MVP can focus primarily on the patient view and a simple coach dashboard for demo purposes. Full build-out can be a post-funding enhancement."
+        },
+        {
+          "id": "feat-009",
+          "feature": "Human-in-the-Loop QA System using inhealth Academy Feedback",
+          "priority": "medium",
+          "reasoning": "Quality assurance is important for clinical trust and SBIR milestones, but a basic feedback loop (e.g., manual review) is sufficient for the MVP. Automated or more sophisticated QA can be developed later."
+        },
+        {
+          "id": "feat-011",
+          "feature": "Patient-Reported Outcomes and Survey Data Ingestion",
+          "priority": "low",
+          "reasoning": "While valuable for future data-driven insights, this feature is not essential for the initial MVP demo and can be implemented after core conversational and escalation features are validated."
+        },
+        {
+          "id": "feat-010",
+          "feature": "Wearables and Remote Patient Monitoring Integration",
+          "priority": "low",
+          "reasoning": "Despite being part of the long-term vision and future partner integrations, wearable data is not required for the MVP. It adds technical complexity and can be deferred until after the initial pilot and funding."
+        },
+        {
+          "id": "feat-014",
+          "feature": "API-First Plug-In Architecture",
+          "priority": "low",
+          "reasoning": "While a plug-in architecture is important for scalability and future integrations, the MVP can be built with a basic, non-modular backend to save time and cost. Refactoring for API-first can be planned post-funding."
+        },
+        {
+          "id": "feat-013",
+          "feature": "Federated Learning Model for Privacy-Preserving Adaptation",
+          "priority": "low",
+          "reasoning": "This is an advanced feature for privacy and population adaptation, but not relevant to the MVP. It is a long-term technical goal that can be included in the roadmap for investors, but not implemented initially."
+        },
+        {
+          "id": "feat-017",
+          "feature": "AI-Generated Intervention Recommendations for Coaches",
+          "priority": "low",
+          "reasoning": "This is a future add-on for coach support. For the MVP, manual or basic rule-based suggestions suffice. AI-driven recommendations can be phased in as more data is collected and the platform matures."
+        }
+      ]
+    }
+  }
+}
